@@ -1,0 +1,45 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-scroll-lock": "^3.1.5",
+    "emoji-picker-react": "^3.2.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-icons": "^4.2.0",
+    "react-input-emoji": "^1.1.8",
+    "react-mobile-picker-scroll": "^0.2.14",
+    "react-modal": "^3.11.2",
+    "react-phone-input-2": "^2.13.7",
+    "react-phone-number-input": "^3.0.25",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-toastify": "^7.0.4",
+    "redux-devtools-extension": "^2.13.9",
+    "serve": "^11.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:8080",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
