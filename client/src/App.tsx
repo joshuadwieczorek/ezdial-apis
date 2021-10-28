@@ -15,7 +15,7 @@ import { LoadUser } from "./API/auth";
 // import Register from "./pages/RegisterPage";
 
 import { ToastContainer, Slide } from "react-toastify";
-import RegisterPage from "./pages/RegisterPage";
+import RegisterPage from "./pages/Register";
 
 // import { GetContacts } from './API/Contacts';
 class App extends Component {
