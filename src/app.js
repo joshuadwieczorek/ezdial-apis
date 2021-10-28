@@ -4,6 +4,9 @@ var morgan = require('morgan')
 const cors = require("cors");
 require("dotenv").config();
 require("./db/mongoose");
+
+const symbolRouter = require("./routers/symbolRouter");
+
 const userRouter = require("./routers/userRouter");
 const contactRouter = require("./routers/contactRouter");
 const globalContactRouter = require("./routers/globalContactRouter");
@@ -28,6 +31,7 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 //import routes from routers folder
+app.use(symbolRouter);
 app.use(userRouter);
 app.use(contactRouter);
 app.use("/global", globalContactRouter);

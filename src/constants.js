@@ -7,3 +7,9 @@ exports.CONTACT_TYPES = {
   GLOBAL: "Global",
   LOCAL: "Local"
 }
+
+exports.SYMBOL_TYPES = {
+  EMOJI: "emoji",
+  ALPHA: "alphabet",
+  NUMERIC: "numeric",
+}
