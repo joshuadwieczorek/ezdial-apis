@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 import { Typography as MuiTypography, Button, Grid } from "@material-ui/core";
 import TextField from "../FormsUI/TextField";
 import styled from "styled-components";
+import { makeStyles } from "@material-ui/styles";
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,14 +43,14 @@ const Wrapper = styled.div`
 const Typography = styled(MuiTypography)``;
 
 const INITIAL_FORM_STATE = {
-  fullName: "",
+  Username: "",
   email: "",
   password: "",
   confirmPassword: "",
 };
 
 const FORM_VALIDATION = Yup.object().shape({
-  fullName: Yup.string().required("Full name is required."),
+  username: Yup.string().required("Username is required."),
   email: Yup.string()
     .email("Enter a valid email.")
     .required("Email is required."),
@@ -78,34 +79,70 @@ const RegForm = () => {
       <>
         <Form>
           <Wrapper>
-            <Typography>Register</Typography>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography>Full Name</Typography>
-                <TextField type="text" name="fullName"></TextField>
+                <TextField
+                  type="text"
+                  id="username"
+                  name="username"
+                  label="User Name"
+                  fullWidth
+                  my={3}
+                ></TextField>
               </Grid>
 
               <Grid item xs={12}>
-                <Typography>Email</Typography>
-                <TextField type="email" name="email"></TextField>
+                <TextField
+                  type="email"
+                  id="email"
+                  name="email"
+                  label="Email Address"
+                  fullWidth
+                  my={3}
+                ></TextField>
               </Grid>
 
               <Grid item xs={12}>
-                <Typography>Password</Typography>
-                <TextField type="password" name="password"></TextField>
+                <TextField
+                  type="password"
+                  id="password"
+                  name="password"
+                  label="Password"
+                  fullWidth
+                  my={3}
+                ></TextField>
               </Grid>
 
               <Grid item xs={12}>
-                <Typography>Confirm Password</Typography>
-                <TextField type="password" name="confirmPassword"></TextField>
+                <TextField
+                  id="confirmPassword"
+                  type="password"
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  fullWidth
+                  my={3}
+                ></TextField>
               </Grid>
 
               <Button
-                onClick={() => console.log("signed up")}
-                variant="contained"
+                onClick={() =>
+                  console.log(
+                    "submit button was clicked & the entered values are showing"
+                  )
+                }
+                variant="outlined"
                 type="submit"
+                style={{
+                  // backgroundColor: "rgb(16, 35, 114)",
+                  backgroundColor: "rgb(180, 62, 105)",
+                  borderRadius: 50,
+                  marginLeft: "3rem",
+                  marginRight: "3rem",
+                  padding: "0",
+                }}
+                fullWidth
               >
-                Submit
+                <Typography variant="subtitle1">Register</Typography>
               </Button>
               {/* <Button
                 variant="contained"

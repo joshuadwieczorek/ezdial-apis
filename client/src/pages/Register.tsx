@@ -8,7 +8,9 @@ const Box = styled(MuiBox)``;
 const Paper = styled(MuiPaper)`
   display: flex;
   justify-content: center;
-  background-color: pink;
+  background-color: #3eb489;
+  // #2761a5;
+  // #102372;
 `;
 
 const Register = () => {
