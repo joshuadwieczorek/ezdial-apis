@@ -8,7 +8,8 @@ const Box = styled(MuiBox)``;
 const Paper = styled(MuiPaper)`
   display: flex;
   justify-content: center;
-  background-color: #3eb489;
+  background-image: linear-gradient(to bottom right, #3eb489, #893eb4);
+  // background-color: #3eb489;
   // #2761a5;
   // #102372;
 `;

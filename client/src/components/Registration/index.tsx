@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 const Typography = styled(MuiTypography)``;
 
 const INITIAL_FORM_STATE = {
-  Username: "",
+  username: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -57,12 +57,11 @@ const FORM_VALIDATION = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must contain at least 6 characters.")
     .required("Password is required."),
-  confirmPassword: Yup.string()
-    .when("password", {
-      is: (val: string | any[]) => !!(val && val.length > 0),
-      then: Yup.string().oneOf([Yup.ref("password")], "Passwords must match."),
-    })
-    .required("You must confirm your password."),
+  confirmPassword: Yup.string().when("password", {
+    is: (val: string | any[]) => !!(val && val.length > 0),
+    then: Yup.string().oneOf([Yup.ref("password")], "Passwords must match."),
+  }),
+  // .required("You must confirm your password.")
 });
 
 const RegForm = () => {
