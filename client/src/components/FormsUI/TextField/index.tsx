@@ -33,11 +33,9 @@ const TextField = ({ name, ...otherProps }: any) => {
   return (
     <FormikTextField
       style={{
-        // backgroundColor: "rgb(16, 35, 114)",
         backgroundColor: "rgb(255, 255, 255)",
         borderRadius: 50,
       }}
-      // disableUnderline={false}
       InputProps={{
         // startAdornment: (
         //   <InputAdornment position="start">

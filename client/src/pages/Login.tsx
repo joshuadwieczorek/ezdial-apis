@@ -1,5 +1,5 @@
 import React from "react";
-import RegForm from "../components/Registration";
+import LoginForm from "../components/Login";
 import styled from "styled-components";
 import { Box as MuiBox, Paper as MuiPaper } from "@material-ui/core";
 
@@ -14,14 +14,14 @@ const Box = styled(MuiBox)``;
 //   // #102372;
 // `;
 
-const Register = () => {
+const Login = () => {
   return (
     <Box>
       {/* <Paper> */}
-      <RegForm />
+      <LoginForm />
       {/* </Paper> */}
     </Box>
   );
 };
 
-export default Register;
+export default Login;
