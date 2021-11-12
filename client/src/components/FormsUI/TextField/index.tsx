@@ -13,22 +13,22 @@ const useStyles = makeStyles(() => ({
 const FormikTextField = styled(MuiTextField)``;
 
 const TextField = ({ name, ...otherProps }: any) => {
-  const [field, mata] = useField(name);
+  // const [field, mata] = useField(name);
 
   const classes = useStyles();
 
   const configTextField = {
-    ...field,
+    // ...field,
     ...otherProps,
     fullWidth: true,
     variant: "outlined",
     size: "small",
   };
 
-  if (mata && mata.touched && mata.error) {
-    configTextField.error = true;
-    configTextField.helperText = mata.error;
-  }
+  // if (mata && mata.touched && mata.error) {
+  //   configTextField.error = true;
+  //   configTextField.helperText = mata.error;
+  // }
 
   return (
     <FormikTextField
