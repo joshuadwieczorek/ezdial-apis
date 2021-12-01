@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
-// import PickerScroll from "react-mobile-picker-scroll";
-// import { Form } from "react-bootstrap";
 import { baseUrl } from "../../shared";
 import { Logout } from "../../API/auth";
 import { Link } from "react-router-dom";
 import { errorToast, successToast } from "../../utils/toasts";
 import styled from "styled-components";
 import {
-  Typography as MuiTypography,
-  TextField,
   Box,
+  InputLabel,
+  Typography as MuiTypography,
   Button,
   FormGroup,
   FormControlLabel,
   Switch,
   FormControl,
-  InputLabel,
   Select,
   MenuItem,
   makeStyles,
@@ -29,6 +26,9 @@ import PlayCircleFilledOutlinedIcon from "@material-ui/icons/PlayCircleFilledOut
 import BlockOutlinedIcon from "@material-ui/icons/BlockOutlined";
 import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
+import TextField from "../FormsUI/TextField";
+// import PickerScroll from "react-mobile-picker-scroll";
+// import { Form } from "react-bootstrap";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,6 +52,13 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const DialTextField = styled(TextField)``;
+
 const Typography = styled(MuiTypography)``;
 
 const DialPage = ({
@@ -66,7 +73,11 @@ any) => {
   const [media2, setMedia2] = React.useState("");
   const handleMedia = (event: React.ChangeEvent<{ value: unknown }>) => {
     setMedia(event.target.value as string);
+  };
+  const handleMedia1 = (event: React.ChangeEvent<{ value: unknown }>) => {
     setMedia1(event.target.value as string);
+  };
+  const handleMedia2 = (event: React.ChangeEvent<{ value: unknown }>) => {
     setMedia2(event.target.value as string);
   };
   ////////
@@ -131,7 +142,9 @@ any) => {
       setMsg("");
       const { emoji, alphabet, number } = valueGroups;
       const symbolSet = `${emoji}${alphabet}${number}`;
-      // const contact = contacts.find((contact) => (contact.symbolSet === symbolSet));
+      // const contact = contacts.find(
+      //   (contact) => contact.symbolSet === symbolSet
+      // );
       let endpoint = `/contact/${symbolSet}`;
       if (global) {
         endpoint = `/global/contact/${symbolSet}`;
@@ -151,6 +164,7 @@ any) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (!isAuthenticated && !global) {
       setGlobal(true);
@@ -187,8 +201,13 @@ any) => {
             />
           </FormGroup>
         </div>
-        <FormControl variant="filled" className={classes.formControl}>
-          <InputLabel>Media</InputLabel>
+        <FormControl
+          size="small"
+          variant="filled"
+          className={classes.formControl}
+        >
+          <DialTextField />
+          {/* <InputLabel>Media</InputLabel> */}
           <Select
             labelId="mediaPicker"
             id="mediaPicker"
@@ -199,18 +218,23 @@ any) => {
             {/* <MenuItem value="">
               <em>None</em>
             </MenuItem> */}
-            <MenuItem value={10}>😀</MenuItem>
-            <MenuItem value={20}>Letters</MenuItem>
-            <MenuItem value={30}>Numbers</MenuItem>
+            <MenuItem value={10}>Emoji</MenuItem>
+            <MenuItem value={20}>Letter</MenuItem>
+            <MenuItem value={30}>Number</MenuItem>
           </Select>
         </FormControl>
-        <FormControl variant="filled" className={classes.formControl}>
-          <InputLabel>Media</InputLabel>
+        <FormControl
+          size="small"
+          variant="filled"
+          className={classes.formControl}
+        >
+          <DialTextField />
+          {/* <InputLabel>Media</InputLabel> */}
           <Select
             labelId="mediaPickerOne"
             id="mediaPickerOne"
             value={media1}
-            onChange={handleMedia}
+            onChange={handleMedia1}
             variant="outlined"
           >
             {/* <MenuItem value="">
@@ -221,13 +245,18 @@ any) => {
             <MenuItem value={30}>Numbers</MenuItem>
           </Select>
         </FormControl>
-        <FormControl variant="filled" className={classes.formControl}>
-          <InputLabel>Media</InputLabel>
+        <FormControl
+          size="small"
+          variant="filled"
+          className={classes.formControl}
+        >
+          <DialTextField />
+          {/* <InputLabel>Media</InputLabel> */}
           <Select
             labelId="mediaPickerTwo"
             id="mediaPickerTwo"
             value={media2}
-            onChange={handleMedia}
+            onChange={handleMedia2}
             variant="outlined"
           >
             {/* <MenuItem value="">
@@ -245,37 +274,42 @@ any) => {
             height={180}
           /> */}
       </div>
-
-      <Button onClick={() => history.push("/contacts")}>
-        {/* <Typography>Address Book</Typography> */}
-        <ImportContactsOutlinedIcon />
-      </Button>
-      <Button>
-        <SettingsOutlinedIcon />
-        {/* <Typography>Settings</Typography> */}
-      </Button>
-      <Button onClick={handleDialClick}>
-        <PlayCircleFilledOutlinedIcon />
-        {/* <Typography>Call</Typography> */}
-      </Button>
-      <Button onClick={() => setMsg("")}>
-        <BlockOutlinedIcon />
-        {/* <Typography>Cancel</Typography> */}
-      </Button>
-      {isAuthenticated && (
-        <Button onClick={() => dispatch(Logout())}>
-          <ExitToAppOutlinedIcon />
-          {/* <Typography>Sign Out</Typography> */}
+      <Row>
+        <Button onClick={() => console.log("Address Book pressed")}>
+          {/* <Button onClick={() => history.push("/contacts")}> */}
+          {/* <Typography>Address Book</Typography> */}
+          <ImportContactsOutlinedIcon />
         </Button>
-      )}
-      {!isAuthenticated && (
-        <Link to="/login" style={{ display: "contents" }}>
-          <Button className="button3">
-            <VpnKeyOutlinedIcon />
-            {/* <Typography>Sign In</Typography> */}
+        <Button onClick={() => console.log("Settings pressed")}>
+          {/* <Button> */}
+          <SettingsOutlinedIcon />
+          {/* <Typography>Settings</Typography> */}
+        </Button>
+        <Button onClick={() => console.log("Dial pressed")}>
+          {/* <Button onClick={handleDialClick}> */}
+          <PlayCircleFilledOutlinedIcon />
+          {/* <Typography>Call</Typography> */}
+        </Button>
+        <Button onClick={() => console.log("Cancel pressed")}>
+          {/* <Button onClick={() => setMsg("")}> */}
+          <BlockOutlinedIcon />
+          {/* <Typography>Cancel</Typography> */}
+        </Button>
+        {isAuthenticated && (
+          <Button onClick={() => dispatch(Logout())}>
+            <ExitToAppOutlinedIcon />
+            {/* <Typography>Sign Out</Typography> */}
           </Button>
-        </Link>
-      )}
+        )}
+        {!isAuthenticated && (
+          <Link to="/login" style={{ display: "contents" }}>
+            <Button className="button3">
+              <VpnKeyOutlinedIcon />
+              {/* <Typography>Sign In</Typography> */}
+            </Button>
+          </Link>
+        )}
+      </Row>
     </Wrapper>
   );
 };

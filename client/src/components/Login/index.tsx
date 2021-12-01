@@ -226,7 +226,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { Form } from "react-bootstrap";
-import { Container, Row, Col } from "react-bootstrap";
+// import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LoginUser } from "../../API/auth";
