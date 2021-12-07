@@ -73,21 +73,20 @@ router.post("/symbols/batch", auth(), async (req, res) => {
     }
 });
 
-
-router.get("/symbols", auth(), async (req, res) => {
-    try {
-        const symbols = await Symbols.find();
-        res.status(200).json(symbols);
-    } catch (error) {
-        res.status(500).json({ message: "Internal server error!" });
-    }
-});
-
 router.get("/symbols/types", auth(), async (req, res) => {
     try {
         let types = [];
         Object.keys(SYMBOL_TYPES).forEach((t) => types.push(SYMBOL_TYPES[t]));
         res.status(200).json(types);
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error!" });
+    }
+});
+
+router.get("/symbols", auth(), async (req, res) => {
+    try {
+        const symbols = await Symbols.find();
+        res.status(200).json(symbols);
     } catch (error) {
         res.status(500).json({ message: "Internal server error!" });
     }
