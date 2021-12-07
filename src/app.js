@@ -6,6 +6,7 @@ require("dotenv").config();
 require("./db/mongoose");
 
 const symbolRouter = require("./routers/symbolRouter");
+const addressRouter = require("./routers/addressRouter");
 
 const userRouter = require("./routers/userRouter");
 const contactRouter = require("./routers/contactRouter");
@@ -31,6 +32,7 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 //import routes from routers folder
+app.use(addressRouter);
 app.use(symbolRouter);
 app.use(userRouter);
 app.use(contactRouter);

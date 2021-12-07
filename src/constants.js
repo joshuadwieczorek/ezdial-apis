@@ -13,3 +13,14 @@ exports.SYMBOL_TYPES = {
   ALPHA: "alphabet",
   NUMERIC: "numeric",
 }
+
+exports.ADDRESS_SCOPES = {
+  GLOBAL: "global",
+  USA: "usa",
+  USER: "user"
+}
+
+exports.ADDRESS_TYPES = {
+  WEBSITE: "website",
+  PHONE: "phone"
+}
