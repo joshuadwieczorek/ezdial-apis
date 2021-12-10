@@ -19,7 +19,7 @@ const Dial = () => {
   return (
     <Box>
       {/* <Paper> */}
-      <DialPage history={undefined} />
+      <DialPage />
       {/* </Paper> */}
     </Box>
   );

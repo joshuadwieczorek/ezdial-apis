@@ -73,7 +73,7 @@ router.post("/symbols/batch", auth(), async (req, res) => {
     }
 });
 
-router.get("/symbols/types", auth(), async (req, res) => {
+router.get("/symbols/types", async (req, res) => {
     try {
         let types = [];
         Object.keys(SYMBOL_TYPES).forEach((t) => types.push(SYMBOL_TYPES[t]));
@@ -83,7 +83,7 @@ router.get("/symbols/types", auth(), async (req, res) => {
     }
 });
 
-router.get("/symbols", auth(), async (req, res) => {
+router.get("/symbols", async (req, res) => {
     try {
         const symbols = await Symbols.find();
         res.status(200).json(symbols);
@@ -93,7 +93,7 @@ router.get("/symbols", auth(), async (req, res) => {
 });
 
 
-router.get("/symbols/:type", auth(), async (req, res) => {
+router.get("/symbols/:type", async (req, res) => {
     try {
         const symbols = await Symbols.find({ type: req.params.type })
         res.status(200).json(symbols);
@@ -103,7 +103,7 @@ router.get("/symbols/:type", auth(), async (req, res) => {
 });
 
 
-router.delete("/symbols/:id", auth(), async (req, res) => {
+router.delete("/symbols/:id", async (req, res) => {
     try {
         const result = await Symbols.deleteOne({
             _id: req.params.id,

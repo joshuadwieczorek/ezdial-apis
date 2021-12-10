@@ -18,7 +18,7 @@ router.post("/users", async (req, res) => {
   const { email } = req.body;
   try {
     let user = await User.findOne({ email });
-    if (user) return res.status(400).json({ message: "User already exist" });
+    if (user) return res.status(400).json({ message: "User already exists by email" });
     user = new User({...req.body, role:USER_ROLES.USER});
     const result = await user.save();
     // sendWelcomeEmail(user.email, user.name);
@@ -42,7 +42,7 @@ router.post("/users/login", async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json({ message: "email of password is incorrect" });
+        .json({ message: "email or password is incorrect" });
     }
     const token = await user.generateAuthToken();
     res.send({ user, token });

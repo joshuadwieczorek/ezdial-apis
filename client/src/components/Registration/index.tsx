@@ -194,6 +194,7 @@ import styled from "styled-components";
 import { Typography as MuiTypography, Button, Grid } from "@material-ui/core";
 import { Helmet } from "react-helmet";
 import TextField from "../FormsUI/TextField";
+import { errorToast } from '../../utils/toasts';
 
 const Wrapper = styled.div`
   display: flex;
@@ -209,8 +210,11 @@ const Wrapper = styled.div`
 const Typography = styled(MuiTypography)``;
 
 class Register extends React.Component {
+
   constructor(props: any) {
+
     super(props);
+
     this.state = {
       name: "",
       email: "",
@@ -224,38 +228,25 @@ class Register extends React.Component {
   }
 
   handleChange(event: any) {
-    const name = event.target.name;
+    const name = event.target.id;
     this.setState({ [name]: event.target.value });
   }
 
-  // async handleSubmit(event) {
-  //   alert("A name was submitted:");
-  //   event.preventDefault();
-  //   let { data } = await axios.post("http://localhost:8080/users/login", {
-  //     email: this.state.email,
-  //     password: this.state.password,
-  //   });
-  //   this.props.history.push("/dial-page");
-  // }
-
-  handleSubmit = (e: any) => {
-    e.preventDefault();
+  async handleSubmit(event: any) {
+    event.preventDefault();
     this.setState({ msg: "" });
-    // @ts-ignore
-    if (this.state.password !== this.state.confirmPass) {
-      this.setState({ msg: "Password doesn't match" });
-      return;
-    }
     const data = {
       // @ts-ignore
-      firstName: this.state.name,
+      name: this.state.name,
       // @ts-ignore
       email: this.state.email,
       // @ts-ignore
       password: this.state.password,
+      // @ts-ignore
+      confirmPass: this.state.password
     };
     // @ts-ignore
-    this.props.dispatch(RegisterUser({ ...this.state }));
+    this.props.dispatch(RegisterUser({ data }));
   };
 
   render() {
@@ -285,25 +276,22 @@ class Register extends React.Component {
                   marginBottom: "1rem",
                 }}
                 fullWidth
-                onClick={() =>
-                  // @ts-ignore
-                  this.props.history.push("/login") &&
-                  console.log("Register button pressed")
-                }
+                // onClick={() =>
+                //   // @ts-ignore
+                //   this.props.history.push("/login") &&
+                //   console.log("Register button pressed")
+                // }
                 // onClick={() => console.log("Register button pressed")}
               >
                 <Typography variant="caption">Return to Login</Typography>
               </Button>
-              {/* <Form.Group controlId="formBasicEmail"> */}
-              {/* <Form.Label>Full Name</Form.Label> */}
-              {/* <Form.Control */}
               <Grid item xs={12}>
                 <TextField
                   autofocus
                   type="text"
-                  id="username"
-                  name="username"
-                  label="User Name"
+                  id="name"
+                  name="name"
+                  label="Full Name"
                   my={3}
                   // @ts-ignore
                   value={this.state.name}
@@ -340,20 +328,20 @@ class Register extends React.Component {
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  label="Confirm Password"
-                  my={3}
-                  // @ts-ignore
-                  value={this.state.confirmPass}
-                  onChange={this.handleChange}
-                  fullWidth
-                  required
-                />
-              </Grid>
+              {/*<Grid item xs={12}>*/}
+              {/*  <TextField*/}
+              {/*    id="confirmPassword"*/}
+              {/*    name="confirmPassword"*/}
+              {/*    type="password"*/}
+              {/*    label="Confirm Password"*/}
+              {/*    my={3}*/}
+              {/*    // @ts-ignore*/}
+              {/*    value={this.state.confirmPass}*/}
+              {/*    onChange={this.handleChange}*/}
+              {/*    fullWidth*/}
+              {/*    required*/}
+              {/*  />*/}
+              {/*</Grid>*/}
               {/* <Form.Group controlId="formBasicCheckbox">
                 <Form.Text className="text-muted">{signup_msg}</Form.Text>
                 <Form.Text className="text-muted">{msg}</Form.Text>
@@ -369,13 +357,13 @@ class Register extends React.Component {
                   padding: "0",
                 }}
                 fullWidth
-                onClick={() =>
-                  // @ts-ignore
-                  this.props.history.push("/") &&
-                  console.log(
-                    "submit button was clicked & the entered values are showing"
-                  )
-                }
+                // onClick={() =>
+                //   // @ts-ignore
+                //   this.props.history.push("/") &&
+                //   console.log(
+                //     "submit button was clicked & the entered values are showing"
+                //   )
+                // }
               >
                 <Typography variant="subtitle1">Submit</Typography>
               </Button>
