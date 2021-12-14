@@ -30,10 +30,13 @@ router.post("/symbols", auth(), async (req, res) => {
 router.post("/symbols/batch", auth(), async (req, res) => {
 
     try {
+        
         let symbols = req.body.symbols.split(',');
         let symbolsThatAlreadyExist = [];
         let createdSymbols = [];
         let errorMessages = [];
+
+        
 
         for (const s of symbols) {
             let exists = await Symbols.findOne({ symbol: s, type: req.body.type });

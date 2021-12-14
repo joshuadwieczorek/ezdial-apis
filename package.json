@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "env-cmd nodemon src/index.js",
     "test": "env-cmd -f ./tests/.env jest --watchAll --runInBand",
-    "watch": "nodemon",
+    "watch": "nodemon src/index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "jest": {
@@ -38,7 +38,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sharp": "^0.26.3",
-    "validator": "^12.1.0"
+    "validator": "^12.1.0",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "env-cmd": "^10.0.1",
