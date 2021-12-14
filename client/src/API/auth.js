@@ -1,29 +1,29 @@
 import * as actions from "../Actions/actions";
 import { baseUrl } from "../shared";
 import { successToast, errorToast } from '../utils/toasts';
+import { API_ENDPOINT_USERS, API_ENDPOINT_LOGIN } from '../constants'
+
 export const LoginUser = (cred) => (dispatch) => {
   dispatch(actions.init_auth());
   baseUrl
-    .post("/users/login", cred)
+    .post(API_ENDPOINT_LOGIN, cred)
     .then((res) => {
-      console.log(res);
       if (res.status === 200) {
         successToast("You are now Logged in!");
         dispatch(actions.login_success(res.data));
-        console.log(res.data);
       }
     })
     .catch((err) => {
-      console.log(err);
-      // console.log(err.response.data);
-      err.response && dispatch(actions.login_failed(err.response.data.message));
+        errorToast(err.response.data.message)
+        err.response && dispatch(actions.login_failed(err.response.data.message));
     });
 };
 
 export const RegisterUser = (cred) => (dispatch) => {
+    console.log(cred)
   dispatch(actions.init_auth());
   baseUrl
-    .post("/users", cred)
+    .post(API_ENDPOINT_USERS, cred.data)
     .then((res) => {
       console.log(res);
       if (res.status === 201) {
@@ -36,8 +36,7 @@ export const RegisterUser = (cred) => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.log(err);
-      // console.log(err.response.data);
+        errorToast(err.response.data.message)
       err.response &&
         dispatch(actions.register_failed(err.response.data.message));
     });

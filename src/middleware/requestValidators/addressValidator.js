@@ -17,13 +17,15 @@ const validator = class AddressValidator
 
         this.data.owner = req.user._id
 
-        if (displayName === undefined || displayName === '')
-            this.errors.push({
-                'field': 'displayName',
-                'message': 'displayName is required'
-            })
-        else
-            this.data.displayName = displayName
+        // if (displayName === undefined || displayName === '')
+        //     this.errors.push({
+        //         'field': 'displayName',
+        //         'message': 'displayName is required'
+        //     })
+        // else
+        //     this.data.displayName = displayName
+
+        this.data.displayName = '-'
 
         if (symbols === undefined)
             this.errors.push({
@@ -81,7 +83,7 @@ const validator = class AddressValidator
                     'message': 'addressScope must be one of ' + addressScopes.join(',')
                 })
             else
-                this.data.addressScope = addressScope.toString().toLowerCase()
+                this.data.addressScope = addressScope.toString().toLowerCase();
         }
 
         if (this.errors.length === 0)
@@ -120,11 +122,13 @@ const validator = class AddressValidator
         {
             if (this.data.addressScope === ADDRESS_SCOPES.USER)
             {
-                const existsByName = await Addresses.findOne({
-                    displayName : this.data.displayName,
-                    addressScope: this.data.addressScope,
-                    owner: req.user._id
-                })
+                // const existsByName = await Addresses.findOne({
+                //     displayName : this.data.displayName,
+                //     addressScope: this.data.addressScope,
+                //     owner: req.user._id
+                // })
+
+                const existsByName = false;
 
                 if (existsByName)
                 {
@@ -156,10 +160,11 @@ const validator = class AddressValidator
             }
             else
             {
-                const existsByName = await Addresses.findOne({
-                    displayName : this.data.displayName,
-                    addressScope: this.data.addressScope,
-                })
+                // const existsByName = await Addresses.findOne({
+                //     displayName : this.data.displayName,
+                //     addressScope: this.data.addressScope,
+                // })
+                const existsByName = false;
                 if (existsByName)
                 {
                     this.errors.push({

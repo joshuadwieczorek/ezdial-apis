@@ -3,12 +3,11 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "react-phone-input-2/lib/style.css";
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import "react-toastify/dist/ReactToastify.css";
 import * as serviceWorker from "./serviceWorker";
+
 ReactDOM.render(
   <Provider store={store}>
     {/* <Router history={history}> */}
